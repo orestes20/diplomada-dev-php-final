@@ -1,0 +1,68 @@
+main {
+    background-color: #e3e4e5;
+    min-height: 100vh;
+}
+
+.mainCard {
+    min-height: 50vh;
+}
+
+@media (min-width: 991.98px) {
+    main {
+        padding-left: 240px;
+    }
+}
+
+.fadeIn2 {
+    -webkit-animation: fadeIn2 0.5s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeIn2 0.5s; /* Firefox < 16 */
+    -ms-animation: fadeIn2 0.5s; /* Internet Explorer */
+    -o-animation: fadeIn2 0.5s; /* Opera < 12.1 */
+    animation: fadeIn2 0.5s;
+    display: block !important;
+}
+
+@keyframes fadeIn2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn2 {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

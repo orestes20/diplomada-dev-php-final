@@ -1,0 +1,145 @@
+/*
+Version 2.0
+[Table of contents]
+-------------------------------------------------------------------------
+1. General
+2. Header
+3. Fixed Nabar
+4. Main Menu
+5. Menu Active
+6. Box content
+-------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------
+1. General
+*/
+html,
+body {
+  background: #ffffff;
+}
+#wrapper {
+  background: #d3d3d363; /* background el sistema */
+}
+/*---------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------
+2. Header
+*/
+.header .logo {
+  background-color: #203767; /* Color de fondo */
+   background-image: url('../images/diplomada.png');/* Imagen de fondo */
+  background-size: 40% auto; /* Ajusta la imagen para cubrir todo el elemento */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/*---------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------
+3. Fixed Nabar
+*/
+.fixed-navbar {
+  background: #e1c564; /* background para el header */
+  color: #fff; /* para las letras de header */
+}
+.fixed-navbar .ico-item {
+  color: #e3e4e5;
+}
+.fixed-navbar .ico-item:hover {
+  color: #d3d3d3;
+}
+.menu-mobile-button {
+  background:  #e1c564; /*  background para el boton de tipo hamburguesa */
+  color: #fff;/* color para el boton del menu */
+}
+@media (min-width: 1025px) {
+  .searchform .button-search:hover {
+    color: #242424;
+  }
+}
+/*---------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------
+4. Main Menu
+*/
+.main-menu {
+  background: #203767;/* background para el menu*/
+  color: #ffffff;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+.main-menu .user .name a {
+  color: #e3e4e5;
+}
+.main-menu .user .control-wrap > .fa {
+  color: #ffffff; /* color boton del nombre de usuario */
+}
+.navigation .title {
+  color: #ffffff;
+  background: #1b1b1b;
+}
+.navigation .menu a {
+  color: #e3e4e5; /* color de la letras del menu */
+}
+.navigation .menu a i {
+  color: #e3e4e5; /* color de los iconos del menu */
+}
+.main-menu .header .logo img{
+  width: 10%;
+  border-radius: 50%;
+  /* background: #2de2f2; */
+}
+@media (min-width: 1025px) {
+  .navigation .menu a:hover {
+    color: #fff; /* hover del menu */
+  }
+  .navigation .menu a:hover i {
+    color: #fff; /* hover de los iconos del menu */
+  }
+}
+.navigation .menu > li.active > a {
+  background: #2de2f2;/* activacion del sub menu */
+  color: #fff;
+}
+.navigation .menu > li.current > a {
+  color: #ffffff;
+  background: #1b1b1b;
+}
+.navigation .menu > li.current .current > a {
+  color: #ffffff;
+}
+/*---------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------
+5. Menu Active
+*/
+@media (min-width: 800px) {
+  .menu-active .header .logo {
+    color: #e1c564; /* color de letra del logo */
+    
+  }
+  .menu-active .header .logo:before {
+    background: #203767; /* color del logo cuando el menu esta cerrado */
+    background-image: url('../images/diplomada.png'); /* Imagen de fondo */
+    background-size: 100px; /* Ajusta el ancho al 100% y la altura automática */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center;
+  }
+  .menu-active .navigation .menu > li:hover > a {
+    background: #2de2f2; /* color del active dek sub menu, cuando el menu esta cerrado */
+  }
+  .menu-active .navigation .menu .sub-menu a {
+    background: #d3d3d3; /* backgroun del sub menu */
+  }
+  .menu-active .header .logo img{
+    width: 50%;
+    margin-top: -30%;
+    margin-left: -10%;
+  }
+}
+/*---------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------
+6. Box content
+*/
+.box-content {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05), 0 2px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05), 0 2px 2px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05), 0 2px 2px rgba(0, 0, 0, 0.05);
+  text-align: justify;
+}
+/*---------------------------------------------------------------------*/
