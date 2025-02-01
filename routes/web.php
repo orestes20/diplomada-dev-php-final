@@ -61,5 +61,8 @@ Route::prefix('aspirante')->group(function(){
         Route::get('inscripcion','view_inscripción');
         Route::post('guardar_inscripcion','guardar_inscripcion');
         Route::get('data_inscripcion','data_inscripcion');
+
+        //rutas para el proceso de certificacion de notas
+        Route::get('certificar/{id_estudiante}','certificacion');
     });
 });

@@ -153,7 +153,7 @@ class model_estudiante extends Model
 
     public static function estudiante_notas($id){
         $id_estudiate = DB::table('estudiante as est')->select('id_estudiante')->where('id_usuario','=',$id)->get();
-        $notas = DB::table('notas as n')->select('per.nombre','per.apellido','curso','notas')->join('estudiante as est','est.id_estudiante','=','n.id_estudiante')->join('curso as cur','cur.id_curso','=','est.id_curso')->join('curso_profesor as c_p','c_p.id_curso','=','cur.id_curso')->join('usuario as us','us.id_usuario','=','c_p.id_profesor')->join('persona as per','per.id_usuario','=','us.id_usuario')->get();
+        $notas = DB::table('notas as n')->select('est.id_estudiante','per.nombre','per.apellido','per.cedula','curso','notas')->join('estudiante as est','est.id_estudiante','=','n.id_estudiante')->join('curso as cur','cur.id_curso','=','est.id_curso')->join('curso_profesor as c_p','c_p.id_curso','=','cur.id_curso')->join('usuario as us','us.id_usuario','=','c_p.id_profesor')->join('persona as per','per.id_usuario','=','us.id_usuario')->get();
         return $notas;
     }
 }

@@ -195,4 +195,9 @@ class aspiranteController extends Controller
         //dd($aspirante); //aqui quede
         return view('admin.students.estudiante_notas', compact('aspirante'));
     }
+
+    public function certificacion($id_estudiante){
+        $aspirante = model_estudiante::estudiante_notas($id_estudiante);
+        return $aspirante;
+    }
 }

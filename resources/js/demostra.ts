@@ -218,8 +218,8 @@ $.get('data_inscripcion/',function(data){
     datos['telefono_otros']=data[0]['telefono_otros'];
     datos['celular']=data[0]['celular'];
     datos['correo']=data[0]['correo'];
-    
 })
+
 
 var dumyParams = { 
     nombres: datos['nombres'], 
