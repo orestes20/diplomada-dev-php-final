@@ -85,7 +85,7 @@
                     <td style="width: 10%" align="center">{{$value->notas}} pts.</td>
                     <td style="width: 5%">
                         @if ($value->notas <= 10)
-                            <button id="certificado" class="check btn btn-info btn-sl"><i class="icon fa fa-check"></i></button>
+                            <button id="diplomada" class="check btn btn-info btn-sl"><i class="icon fa fa-check"></i></button>
                         @else
                             <button disabled class="check btn btn-info btn-sl"><i class="icon fa fa-check"></i></button>
                         @endif

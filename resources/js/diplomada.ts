@@ -40,3 +40,11 @@ export var datos = {
     curso: "Licenciatura en Desarrollo de Aplicacioneses en Cardano",
     url: "https://shorturl.at/NRvjj"
 };
+
+export var diplomada1 = {
+    nombres: "",
+    apellido: "",
+    cedula: "",
+    curso: "",
+    notas: ""
+}; 

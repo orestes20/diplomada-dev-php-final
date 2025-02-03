@@ -26,7 +26,7 @@
     </div>
     @vite(['resources/js/sidebar', 'resources/js/demostra', 'resources/js/wallet', 'resources/js/diplomada', 'resources/js/dadatipos', 'resources/js/utils','resources/js/validar'])
     <script type="module">
-        const cardanoIsEnabled = window.cardano && await window.cardano.isEnabled() ? true : false
+        const cardanoIsEnabled = window.cardano && await window.cardano.eternl.isEnabled() ? true : false
         //cardanoIsEnabled = window.cardano;
         //console.log("Cardano IsEnabled = " + cardanoIsEnabled,await window.cardano);
 

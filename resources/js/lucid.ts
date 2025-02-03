@@ -8,7 +8,7 @@ const lucid = await Lucid.new(
     'Preview',
 );
 
-const api = await window.cardano.nami.enable();
+const api = await window.cardano.eternl.enable();
 lucid.selectWallet(api);
 
 //console.log(api);
