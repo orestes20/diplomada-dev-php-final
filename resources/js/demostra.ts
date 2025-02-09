@@ -62,12 +62,12 @@ const setWallet = () => {
 var walletApi: WalletApi;
 
 export const conectar = async () => {
-     walletApi = await window.cardano.eternl.enable();
-     //console.log(api);
+    walletApi = await window.cardano.eternl.enable();
+    //console.log('llegue a este punto',walletApi);
     setWallet();
     lucid.selectWallet.fromAPI(walletApi);
     console.log("Primera Vista de Lucid, bajo conectar.")
-    console.log(lucid);
+    console.log(walletApi);
     //console.log(lucid.config.toString);
 };
 
@@ -176,7 +176,7 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
                     },
                 },
             };
-       
+            //console.log('llegue a este punto');
             const datum_crudo = Data.to(BigInt(1));
             console.log("Datum crudo: -> " + datum_crudo);
             const datum: OutputDatum = {kind: "inline", value: datum_crudo};
@@ -192,7 +192,6 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
                  .attach.MintingPolicy(dadaPM_TitulosyNotas)
                  .attachMetadata("721", jsonData)
                  .complete();
-
 
              const signedTx = await tx.sign.withWallet().complete();
              console.log('signedTX '+signedTx);
@@ -225,19 +224,16 @@ $.get('data_inscripcion/',function(data){
     datos['correo']=data[0]['correo'];
 })
 
-$('#diplomada').click(function() {
-    $.get('certificar/'+$('#id_estudiante').val(),function(data){
-
-        diplomada1['nombres']=data[0]['nombre'];
-        diplomada1['apellido']=data[0]['apellido'];
-        diplomada1['cedula']=data[0]['cedula'];
-        diplomada1['curso']=data[0]['curso'];
-        diplomada1['notas']=data[0]['notas'];
-        
-//console.log
-(diplomada1);
-    });
-}); 
+// $('#diplomada').click(function() {
+    // $.get('certificar/'+$('#id_estudiante').val(),function(data){
+    //     console.log(diplomada1);
+    //     diplomada1['nombres']=data[0]['nombre'];
+    //     diplomada1['apellido']=data[0]['apellido'];
+    //     diplomada1['cedula']=data[0]['cedula'];
+    //     diplomada1['curso']=data[0]['curso'];
+    //     diplomada1['notas']=data[0]['notas'];
+    // });
+// }); 
 
 
 var dumyParams = { 
@@ -270,9 +266,6 @@ const hastala = document.getElementById("hastala");
         hastala.addEventListener("click", async function () {
             console.log(datos);
             var demo = crearInscripcion(datos);
-
-        // console.log('este',(await demo).type);
-        //console.log('este');
         if ((await demo).type == 'error') {
             alert('debe Reconectar la billetera');
         }
@@ -285,10 +278,7 @@ const hastala = document.getElementById("hastala");
                     alert('Ocurrio un problema al crear los NFTs intente nuevamente');
                 }
             });
-            //alert('Proceso de Inscripcion completado');
         }
-        //colocar las notificaciones verificando demo en el campo type
-        //await crearTitulos();
     });
     }
 
@@ -319,18 +309,9 @@ const diplomada = document.getElementById("diplomada");
             var demo = crearDiplomADA(dumyParamsDiplomADA);
             if ((await demo).type == 'error') {
                 alert('debe Reconectar la billetera');
+            }else{
+                alert('Proceso de Certificacion completado');
             }
-        //     if ((await demo).type == 'ok') {
-        //         $.get('hash/'+(await demo).data,function(data1){
-        //         console.log('entre a revisar el hash');
-        //         if (data1) {
-        //             alert('NFT creados verifique su billetera');
-        //         }else{
-        //             alert('Ocurrio un problema al crear el NFT intente nuevamente');
-        //         }
-        // });
-        
-        alert('Proceso de Certificacion completado');
     })};
     //colocar las notificaciones verificando demo en el campo type
     //await crearTitulos();

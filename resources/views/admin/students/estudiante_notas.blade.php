@@ -89,7 +89,6 @@
                         @else
                             <button disabled class="check btn btn-info btn-sl"><i class="icon fa fa-check"></i></button>
                         @endif
-
                     </td>               
                 </tr>
             @endforeach 

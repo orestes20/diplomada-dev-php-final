@@ -1,6 +1,6 @@
 @php
     $wallets = [
-        ['name' => 'Nami', 'description' => 'Billetera sin custodia para Cardano, envía ADA, conecta DApps.'],
+        ['name' => 'Eternl', 'description' => 'Billetera sin custodia para Cardano, envía ADA, conecta DApps.'],
         ['name' => 'Yoroi', 'description' => 'Billetera criptográfica de código abierto que potencia su viaje Web3.'],
         ['name' => 'Cardano', 'description' => 'Segura, gestiona ADA. Compra, envía, recibe.'],
     ];

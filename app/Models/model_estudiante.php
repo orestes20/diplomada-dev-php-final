@@ -83,14 +83,19 @@ class model_estudiante extends Model
     }
     public static function lista_estudiantes(){
         //dd(session('id'));
-        $lista_aspiranes= DB::table('estudiante as est')->select('est.id_estudiante','est.id_curso','est.id_estudiante','nombre','apellido','cedula','sexo','direccion','correo','celular','cur.curso','perfil','transaccion_documentos')->join('usuario as us','us.id_usuario','=','est.id_usuario')->join('perfil as per','per.id_perfil','=','us.id_perfil')->join('curso as cur','cur.id_curso','=','est.id_curso')->get();
+        $lista_aspiranes= DB::table('estudiante as est')->select('est.id_estudiante','est.id_curso','est.id_estudiante','nombre','apellido','cedula','sexo','direccion','correo','celular','cur.curso','perfil','transaccion_documentos')->join('usuario as us','us.id_usuario','=','est.id_usuario')->join('perfil as per','per.id_perfil','=','us.id_perfil')->join('curso as cur','cur.id_curso','=','est.id_curso')->where('per.id_perfil','=','2')->get();
         //dd($lista_aspiranes);
         return $lista_aspiranes;
 
     }
     public static function lista($id_perfil){
-        //dd(session('id'));
-        $lista_aspiranes= DB::table('estudiante as est')->select('est.id_estudiante','est.id_curso','est.id_estudiante','nombre','apellido','cedula','sexo','direccion','correo','celular','cur.curso','notas')->join('usuario as us','us.id_usuario','=','est.id_usuario')->join('perfil as per','per.id_perfil','=','us.id_perfil')->leftjoin('curso as cur','cur.id_curso','=','est.id_curso')->leftjoin('curso_profesor as c_p','c_p.id_curso','=','cur.id_curso')->leftjoin('notas as n','n.id_estudiante','=','est.id_estudiante')->where('us.id_perfil','=',$id_perfil)->where('c_p.id_profesor','=',session('id'))->whereNull('notas')->get();
+        if (session('id') == 1) {
+            $lista_aspiranes= DB::table('estudiante as est')->select('est.id_estudiante','est.id_curso','est.id_estudiante','nombre','apellido','cedula','sexo','direccion','correo','celular','cur.curso')->join('usuario as us','us.id_usuario','=','est.id_usuario')->join('perfil as per','per.id_perfil','=','us.id_perfil')->leftjoin('curso as cur','cur.id_curso','=','est.id_curso')->leftjoin('curso_profesor as c_p','c_p.id_curso','=','cur.id_curso')->where('us.id_perfil','=',$id_perfil)->get();
+            
+        }else{
+            $lista_aspiranes= DB::table('estudiante as est')->select('est.id_estudiante','est.id_curso','est.id_estudiante','nombre','apellido','cedula','sexo','direccion','correo','celular','cur.curso','notas')->join('usuario as us','us.id_usuario','=','est.id_usuario')->join('perfil as per','per.id_perfil','=','us.id_perfil')->leftjoin('curso as cur','cur.id_curso','=','est.id_curso')->leftjoin('curso_profesor as c_p','c_p.id_curso','=','cur.id_curso')->leftjoin('notas as n','n.id_estudiante','=','est.id_estudiante')->where('us.id_perfil','=',$id_perfil)->where('c_p.id_profesor','=',session('id'))->whereNull('notas')->get();
+        }
+        
         //dd($lista_aspiranes);
         return $lista_aspiranes;
 
@@ -153,7 +158,8 @@ class model_estudiante extends Model
 
     public static function estudiante_notas($id){
         $id_estudiate = DB::table('estudiante as est')->select('id_estudiante')->where('id_usuario','=',$id)->get();
-        $notas = DB::table('notas as n')->select('est.id_estudiante','per.nombre','per.apellido','per.cedula','curso','notas')->join('estudiante as est','est.id_estudiante','=','n.id_estudiante')->join('curso as cur','cur.id_curso','=','est.id_curso')->join('curso_profesor as c_p','c_p.id_curso','=','cur.id_curso')->join('usuario as us','us.id_usuario','=','c_p.id_profesor')->join('persona as per','per.id_usuario','=','us.id_usuario')->get();
+        //dd($id_estudiate[0]->id_estudiante);
+        $notas = DB::table('notas as n')->select('est.id_estudiante','per.nombre','per.apellido','per.cedula','curso','notas')->join('estudiante as est','est.id_estudiante','=','n.id_estudiante')->join('curso as cur','cur.id_curso','=','est.id_curso')->join('curso_profesor as c_p','c_p.id_curso','=','cur.id_curso')->join('usuario as us','us.id_usuario','=','c_p.id_profesor')->join('persona as per','per.id_usuario','=','us.id_usuario')->where('est.id_estudiante','=',$id_estudiate[0]->id_estudiante)->get();
         return $notas;
     }
 }

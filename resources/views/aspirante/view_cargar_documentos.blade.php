@@ -46,7 +46,7 @@
                 </form>
                 @if ($estatus == 'on' && $transaccion_documentos == null)
                     <!--cambiar el nombre hastala1-->
-                    <button class="btn btn-primary" id="hastala1"> Generar NFTs </button>
+                    <button class="btn btn-primary" style="border-radius:20px; background-color: #203767; border-color: #203767" id="hastala1"> Generar NFTs </button>
                 @endif
             </div>
         </div>

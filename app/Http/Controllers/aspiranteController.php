@@ -90,6 +90,7 @@ class aspiranteController extends Controller
     }
     public function lista_aspirantes(){
         $aspirante = model_estudiante::lista(3);
+        //dd($aspirante);
         return view('admin.applicants.index',compact('aspirante'));
     }
     public function lista_estudiantes(){
@@ -138,12 +139,12 @@ class aspiranteController extends Controller
         $url= 'partida_nacimiento/'.$partida_nacimiento;
         $request->partida_nacimiento = $url;
 
-        $punto=$request->file('titulo_postgrado');
-        $ext=strstr($request->file('titulo_postgrado')->getClientOriginalName(),".",false);
-        $titulo_postgrado="titulo_postgrado".'_'.session('id').'_'.date('Y-m-d').$ext;
-        $punto->move('titulo_postgrado',$titulo_postgrado);
-        $url= 'titulo_postgrado/'.$titulo_postgrado;
-        $request->titulo_postgrado = $url;
+        // $punto=$request->file('titulo_postgrado');
+        // $ext=strstr($request->file('titulo_postgrado')->getClientOriginalName(),".",false);
+        // $titulo_postgrado="titulo_postgrado".'_'.session('id').'_'.date('Y-m-d').$ext;
+        // $punto->move('titulo_postgrado',$titulo_postgrado);
+        // $url= 'titulo_postgrado/'.$titulo_postgrado;
+        // $request->titulo_postgrado = $url;
 
         $punto=$request->file('calificaciones_postgrado');
         $ext=strstr($request->file('calificaciones_postgrado')->getClientOriginalName(),".",false);
