@@ -141,21 +141,21 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
             const titulosyNotasRedeemer = BigInt(1);
             const mintRedeemer = Data.to(titulosyNotasRedeemer);
 
-            // console.log(dadaPM_TitulosyNotas);
-            // console.log("validator address -> " + dadaValDireccion);
-            // console.log("address -> " + direccionEstudiante);
-            // console.log("Nombre Token Titulos: " + tokenName_Titulos + " -> " + titulos_tokenName);
-            // console.log("Nombre Token Notas: " + tokenName_Notas + " -> " + notas_tokenName);
-            // console.log("pid            -> " + titulosynotas_pid)
-            // console.log("NFT Titulos    -> " + titulos_dada);
-            // console.log("NFT Notas      -> " + notas_dada);
-            // console.log(fromUnit(titulos_dada));
-            // console.log(fromUnit(notas_dada));
-            // console.log("redeeemer      -> " + titulosyNotasRedeemer);
-            // console.log(mintRedeemer);
+            console.log(dadaPM_TitulosyNotas);
+            console.log("validator address -> " + dadaValDireccion);
+            console.log("address -> " + direccionEstudiante);
+            console.log("Nombre Token Titulos: " + tokenName_Titulos + " -> " + titulos_tokenName);
+            console.log("Nombre Token Notas: " + tokenName_Notas + " -> " + notas_tokenName);
+            console.log("pid            -> " + titulosynotas_pid)
+            console.log("NFT Titulos    -> " + titulos_dada);
+            console.log("NFT Notas      -> " + notas_dada);
+            console.log(fromUnit(titulos_dada));
+            console.log(fromUnit(notas_dada));
+            console.log("redeeemer      -> " + titulosyNotasRedeemer);
+            console.log(mintRedeemer);
 
 
-            const jsonData: MD_Titulos = {
+            const jsonData = {
                 [titulosynotas_pid]: {
                     [tokenName_Titulos]: {
                         id: 1,
@@ -176,7 +176,7 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
                     },
                 },
             };
-            //console.log('llegue a este punto');
+            console.log('llegue a este punto');
             const datum_crudo = Data.to(BigInt(1));
             console.log("Datum crudo: -> " + datum_crudo);
             const datum: OutputDatum = {kind: "inline", value: datum_crudo};
@@ -190,8 +190,8 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
                  .pay.ToAddress(direccionEstudiante, { [titulos_dada]: BigInt(1), [notas_dada]: BigInt(1), lovelace: BigInt(2000000)})
                  .pay.ToContract(dadaValDireccion, datum , { [titulos_dada]: BigInt(1), [notas_dada]: BigInt(1), lovelace: BigInt(2000000)})
                  .attach.MintingPolicy(dadaPM_TitulosyNotas)
-                 .attachMetadata("721", jsonData)
-                 .complete();
+                 .attachMetadata(721, jsonData)
+                 .complete({localUPLCEval: false});
 
              const signedTx = await tx.sign.withWallet().complete();
              console.log('signedTX '+signedTx);
@@ -199,9 +199,9 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
              console.log("txHash -> " + txHash);
              const success = await lucid!.awaitTx(txHash)
              console.log("Funciono -> " + success);
-             
-             const mensaje = "por aqui si es";
-             console.log(mensaje);
+            
+            const mensaje = "por aqui si es";
+            console.log(mensaje);
 
        return { type: "ok", data: txHash };
         }
@@ -399,8 +399,8 @@ export const crearInscripcion = async (params: ParamsInscripcion): Promise<Resul
                      .pay.ToAddress(direccionEstudiante, { [inscripcion_dada]: BigInt(1), lovelace: BigInt(2000000)})
                      .pay.ToContract(dadaValDireccion, datum , { [inscripcion_dada]: BigInt(1), lovelace: BigInt(2000000)})
                      .attach.MintingPolicy(dadaPM_Inscripcion)
-                     .attachMetadata("721", jsonData)
-                     .complete();
+                     .attachMetadata(721, jsonData)
+                     .complete({localUPLCEval: false});
     
     
                  const signedTx = await tx.sign.withWallet().complete();
