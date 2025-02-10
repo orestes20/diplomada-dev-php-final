@@ -1,6 +1,5 @@
 import {
     Blockfrost,
-    C,
     Data,
     Lucid,
     MintingPolicy,
@@ -23,7 +22,7 @@ import {validatorToAddress,mintingPolicyToId} from '@lucid-evolution/utils';
 import { datos,diplomada1, contratos } from "./diplomada.ts";
 
 
-import { MD_DiplomADA, ParamsInscripcion, Resultado } from './dadatipos';
+import { ParamsDiplomADA, ParamsInscripcion, Resultado } from './dadatipos';
 import $ from "jquery";
 import * as swal from 'sweetalert';
 
@@ -364,7 +363,7 @@ export const crearInscripcion = async (params: ParamsInscripcion): Promise<Resul
                 // console.log(mintRedeemer);
     
     
-                const jsonData: MD_DiplomADA = {
+                const jsonData = {
                     [nftInscripcion_pid]: {
                         [tokenName_Inscripcion]: {
                             id: 1,
@@ -377,13 +376,13 @@ export const crearInscripcion = async (params: ParamsInscripcion): Promise<Resul
                             nombres: params.nombres,
                             apellidos: params.apellidos,
                             cedula: params.cedula,
-                            sexo: params.sexo,
-                            fecha_nac: params.fecha_nac,
-                            direccion: params.direccion,
-                            telefono_habitacion: params.telefono_habitacion,
-                            telefono_otros: params.telefono_otros,
-                            celular: params.celular,
-                            correo: params.correo,
+                            // sexo: params.sexo,
+                            // fecha_nac: params.fecha_nac,
+                            // direccion: params.direccion,
+                            // telefono_habitacion: params.telefono_habitacion,
+                            // telefono_otros: params.telefono_otros,
+                            // celular: params.celular,
+                            // correo: params.correo,
                             curso: "Diplomada en Desarrollo de Aplicacopmes en Cardano"
                         },
                     },
@@ -447,15 +446,15 @@ export const crearInscripcion = async (params: ParamsInscripcion): Promise<Resul
                 const diplomadaRedeemer = BigInt(1);
                 const mintRedeemer = Data.to(diplomadaRedeemer);
     
-                console.log(dadaPM_DiplomADA);
-                console.log("validator address -> " + dadaValDireccion);
-                console.log("address -> " + direccionEstudiante);
-                console.log("Nombre Token DiplomADA: " + tokenName_DiplomADA);
-                console.log("pid            -> " + nftDiplomADA_pid)
-                console.log("NFT DiplomADA  -> " + nftDiplomADA_tokenName);
-                console.log(fromUnit(diplomada_unit));
-                console.log("redeeemer      -> " + diplomadaRedeemer);
-                console.log(mintRedeemer);
+                // console.log(dadaPM_DiplomADA);
+                // console.log("validator address -> " + dadaValDireccion);
+                // console.log("address -> " + direccionEstudiante);
+                // console.log("Nombre Token DiplomADA: " + tokenName_DiplomADA);
+                // console.log("pid            -> " + nftDiplomADA_pid)
+                // console.log("NFT DiplomADA  -> " + nftDiplomADA_tokenName);
+                // console.log(fromUnit(diplomada_unit));
+                // console.log("redeeemer      -> " + diplomadaRedeemer);
+                // console.log(mintRedeemer);
 
                  const jsonData = {
                     [nftDiplomADA_pid]: {

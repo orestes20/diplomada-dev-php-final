@@ -19,6 +19,7 @@ export type ParamsDiplomADA = {
     nombre_curso: string;
     estatus_aprobatoria: string;
     direccion: string;
+    notas: string;
     creditos: number;
   };
 
