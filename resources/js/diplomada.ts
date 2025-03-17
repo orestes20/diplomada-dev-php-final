@@ -48,3 +48,11 @@ export var diplomada1 = {
     curso: "",
     notas: ""
 }; 
+
+export var estudiante = {
+    nombre: "",
+    apellido: "",
+    cedula: "",
+    sexo: "",
+    fecha_nac: ""
+}

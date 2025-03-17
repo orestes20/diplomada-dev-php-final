@@ -82,7 +82,8 @@ class aspiranteController extends Controller
     public function actualizar_estatus_documento(Request $request){
         $actualizar = model_estudiante::actualizar($request);
         if ($actualizar) {
-            return response()->json('¡Cambio de estatus realizado con éxito!', 200);
+            return view('notf.notf17');
+            //return response()->json('¡Cambio de estatus realizado con éxito!', 200);
         }
         else{
             return response()->json('Error', 500);
@@ -192,13 +193,17 @@ class aspiranteController extends Controller
     }
 
     public function estudiante_notas(){
-        $aspirante = model_estudiante::estudiante_notas(session('id'));
+        $id_estudiante = model_estudiante::id_estudiante(session('id'));
+        //dd($id_estudiante[0]->id_estudiante);
+        $aspirante = model_estudiante::lista_notas($id_estudiante[0]->id_estudiante);
         //dd($aspirante); //aqui quede
         return view('admin.students.estudiante_notas', compact('aspirante'));
     }
 
     public function certificacion($id_estudiante){
+        //dd($id_estudiante);
         $aspirante = model_estudiante::estudiante_notas($id_estudiante);
+        //dd($aspirante);
         return $aspirante;
     }
 }

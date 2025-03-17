@@ -4,7 +4,7 @@
             <div class="col text-center">
                 <div class="row">
                     <div class="col">
-                        © 2024 DIPLOMADA
+                        © 2025 DIPLOMADA
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @php
-    $tableHead = ['ID', 'Nombre', 'Apellido', 'curso','Calificación','Certificar'];
+    $tableHead = ['ID', 'Nombre Prof', 'Apellido Prof', 'curso','Calificación','Certificar'];
     $tableFilters = [
         ['label' => 'ID', 'name' => 'id'],
         ['label' => 'Nombre', 'name' => 'nombre'],
@@ -78,13 +78,13 @@
         <x-table :tableHead="$tableHead" :tableFilters="$tableFilters" :total="$total">
             @foreach ($aspirante as $key => $value)
                 <tr>
-                    <td><input id="id_estudiante" value="{{$value->id_estudiante}}" type="text" hidden><b>{{ $key + 1 }}</b></td>
+                    <td><input id="id_estudiante" hidden value="{{$value->id_estudiante}}" type="text"><b>{{ $key + 1 }}</b></td>
                     <td>{{ $value->nombre }}</td>
                     <td>{{ $value->apellido }}</td>
                     <td>{{ $value->curso }}</td>
                     <td style="width: 10%" align="center">{{$value->notas}} pts.</td>
                     <td style="width: 5%">
-                        @if ($value->notas <= 10)
+                        @if ($value->notas >= 10)
                             <button id="diplomada" class="check btn btn-info btn-sl"><i class="icon fa fa-check"></i></button>
                         @else
                             <button disabled class="check btn btn-info btn-sl"><i class="icon fa fa-check"></i></button>
@@ -113,18 +113,6 @@
             return false;
         }
     }
-   
-    $('#certificado').click(function(){
-        $.get('certificar/'+$('#id_estudiante').val(),function(data){
-            var datos = [];
-            datos['nombres']=data[0]['nombre'];
-            datos['apellido']=data[0]['apellido'];
-            datos['cedula']=data[0]['cedula'];
-            datos['curso']=data[0]['curso'];
-            datos['notas']=data[0]['notas'];
-            console.log(datos);
-        });
-    });
 
 </script>
 @endsection

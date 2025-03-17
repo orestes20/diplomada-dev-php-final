@@ -177,7 +177,6 @@
         <x-button-submit>Inscribir</x-button-submit>
 
         <button type="button" class="btn btn-primary" style="border-radius:20px; background-color: #203767; border-color: #203767" id="hastala"> inscripción NFTs </button>
-       
     </form>
 </div>
 @endsection

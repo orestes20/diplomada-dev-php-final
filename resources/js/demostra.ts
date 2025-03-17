@@ -1,6 +1,5 @@
 import {
     Blockfrost,
-    C,
     Data,
     Lucid,
     MintingPolicy,
@@ -20,10 +19,10 @@ import {
     Promise,
 } from '@lucid-evolution/lucid';
 import {validatorToAddress,mintingPolicyToId} from '@lucid-evolution/utils';
-import { datos,diplomada1, contratos } from "./diplomada.ts";
+import { datos,diplomada1,estudiante, contratos } from "./diplomada.ts";
 
 
-import { MD_DiplomADA, ParamsInscripcion, Resultado } from './dadatipos';
+import { ParamsDiplomADA, ParamsInscripcion, Resultado } from './dadatipos';
 import $ from "jquery";
 import * as swal from 'sweetalert';
 
@@ -51,6 +50,14 @@ const lucid = await Lucid(
     ),
     'Preview',
 );
+
+// const lucid = await Lucid.new(
+//     new Blockfrost(
+//          'https://cardano-preprod.blockfrost.io/api/v0',  // Cambia a la URL de preprod
+//          'preprodztdBFQVDQlFKY3O6TZJgzkZyyqRSu4vj',  // Asegúrate de usar la clave de API correcta
+//      ),
+//      'Preprod',  // Cambia 'Preview' a 'Preprod'
+// );
 
 const setWallet = () => {
     const element = wallet?.getElementsByTagName('span')[0];
@@ -110,7 +117,14 @@ if ((await cardanoIsEnabled()) && showBalance && wallet) {
     getBalance();
     setWallet();
 }
-
+$.get('data_inscripcion/',function(dat){
+    estudiante['nombre'] = dat[0]['nombre'];
+    estudiante['apellido'] = dat[0]['apellido'];
+    estudiante['cedula'] = dat[0]['cedula'];
+    estudiante['sexo'] = dat[0]['sexo'];
+    estudiante['fecha_nac'] = dat[0]['fecha_nac'];
+    console.log(estudiante);
+});
 export const crearTitulos = async (): Promise<Resultado<any>> => {
     //let resultado: Resultado<any> = { type: "error", error: new Error("No se pudo crear el titulo") };
     try {cardanoIsEnabled 
@@ -154,25 +168,28 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
             // console.log("redeeemer      -> " + titulosyNotasRedeemer);
             // console.log(mintRedeemer);
 
-
-            const jsonData: MD_Titulos = {
+            // console.log('le di al boton');
+            const jsonData = {
                 [titulosynotas_pid]: {
                     [tokenName_Titulos]: {
                         id: 1,
-                        name: "Diplomada Titulo Certificado 22",
+                        name: "Diplomada Titulo Certificado",
                         image: "https://shorturl.at/NRvjj",
-                        description: "Diplomada Titulo Test"
+                        description: "Diplomada Titulo"
                     },
                     [tokenName_Notas]: {
                         id: 1,
-                        name: "Diplomada Notas Certificadas 22",
+                        name: "Diplomada Notas Certificadas",
                         image: "https://shorturl.at/NRvjj",
-                        description: "Diplomada Notas Test"
+                        description: "Diplomada Notas Certificadas"
                     },
                     "datos_estudiante": {
                         hash: "fac7b8513f4b985174e88a02ee8165fc",
-                        nombres: "Roberto Jose",
-                        apellidos: "Cerrud Campos"
+                        nombres:estudiante['nombre'],
+                        apellidos: estudiante['apellido'],
+                        cedula:estudiante['cedula'],
+                        sexo: estudiante['sexo'],
+                        fehca_nac:estudiante['fecha_nac']
                     },
                 },
             };
@@ -190,8 +207,8 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
                  .pay.ToAddress(direccionEstudiante, { [titulos_dada]: BigInt(1), [notas_dada]: BigInt(1), lovelace: BigInt(2000000)})
                  .pay.ToContract(dadaValDireccion, datum , { [titulos_dada]: BigInt(1), [notas_dada]: BigInt(1), lovelace: BigInt(2000000)})
                  .attach.MintingPolicy(dadaPM_TitulosyNotas)
-                 .attachMetadata("721", jsonData)
-                 .complete();
+                 .attachMetadata(721, jsonData)
+                 .complete({localUPLCEval: false});
 
              const signedTx = await tx.sign.withWallet().complete();
              console.log('signedTX '+signedTx);
@@ -199,9 +216,9 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
              console.log("txHash -> " + txHash);
              const success = await lucid!.awaitTx(txHash)
              console.log("Funciono -> " + success);
-             
-             const mensaje = "por aqui si es";
-             console.log(mensaje);
+            
+            const mensaje = "por aqui si es";
+            console.log(mensaje);
 
        return { type: "ok", data: txHash };
         }
@@ -223,17 +240,25 @@ $.get('data_inscripcion/',function(data){
     datos['celular']=data[0]['celular'];
     datos['correo']=data[0]['correo'];
 })
+var ParamsDiplomADA = {};
 
-// $('#diplomada').click(function() {
-    // $.get('certificar/'+$('#id_estudiante').val(),function(data){
-    //     console.log(diplomada1);
-    //     diplomada1['nombres']=data[0]['nombre'];
-    //     diplomada1['apellido']=data[0]['apellido'];
-    //     diplomada1['cedula']=data[0]['cedula'];
-    //     diplomada1['curso']=data[0]['curso'];
-    //     diplomada1['notas']=data[0]['notas'];
-    // });
-// }); 
+    $.get('certificar/'+$('#id_estudiante').val(),function(data){
+        //console.log(data);
+        // diplomada1['nombres']=data[0]['nombre'];
+        // diplomada1['apellido']=data[0]['apellido'];
+        // diplomada1['cedula']=data[0]['cedula'];
+        // diplomada1['curso']=data[0]['curso'];
+        // diplomada1['notas']=data[0]['notas'];
+      
+        ParamsDiplomADA = {
+            nombres: data[0]['nombre'], 
+            apellidos: data[0]['apellido'], 
+            cedula: data[0]['cedula'], 
+            nombre_curso: data[0]['curso'],
+            notas: data[0]['notas']  
+        };
+        console.log('estoy llenando el params',ParamsDiplomADA);
+    });
 
 
 var dumyParams = { 
@@ -251,14 +276,14 @@ var dumyParams = {
     url: "https://shorturl.at/NRvjj"
 }
 
-var dumyParamsDiplomADA = {
-    nombres: diplomada1['nombres'], 
-    apellidos: diplomada1['apellido'], 
-    cedula: diplomada1['cedula'], 
-    nombre_curso: diplomada1['curso'],
-    notas: diplomada1['notas']  
-};
-
+// var ParamsDiplomADA = {
+//     nombres: diplomada1['nombres'], 
+//     apellidos: diplomada1['apellido'], 
+//     cedula: diplomada1['cedula'], 
+//     nombre_curso: diplomada1['curso'],
+//     notas: diplomada1['notas']  
+// };
+// console.log(ParamsDiplomADA);
 
 // console.log(dumyParams,datos);
 const hastala = document.getElementById("hastala");
@@ -301,16 +326,20 @@ const hastala1 = document.getElementById("hastala1");
     });
     }
 
+
+    //conexcion con la walet y minteo del proceso de datos
 const diplomada = document.getElementById("diplomada");
+//console.log('hola llegue a diplomada',diplomada);
     if (diplomada) {
         diplomada.addEventListener("click", async function () {
-            console.log(lucid);
-            console.log(dumyParamsDiplomADA);
-            var demo = crearDiplomADA(dumyParamsDiplomADA);
+            //console.log(lucid);
+            //console.log(ParamsDiplomADA);
+            var demo = crearDiplomADA(ParamsDiplomADA);
             if ((await demo).type == 'error') {
                 alert('debe Reconectar la billetera');
+                //console.log("debe Reconectar la billetera");
             }else{
-                alert('Proceso de Certificacion completado');
+                
             }
     })};
     //colocar las notificaciones verificando demo en el campo type
@@ -364,7 +393,7 @@ export const crearInscripcion = async (params: ParamsInscripcion): Promise<Resul
                 // console.log(mintRedeemer);
     
     
-                const jsonData: MD_DiplomADA = {
+                const jsonData = {
                     [nftInscripcion_pid]: {
                         [tokenName_Inscripcion]: {
                             id: 1,
@@ -377,13 +406,13 @@ export const crearInscripcion = async (params: ParamsInscripcion): Promise<Resul
                             nombres: params.nombres,
                             apellidos: params.apellidos,
                             cedula: params.cedula,
-                            sexo: params.sexo,
-                            fecha_nac: params.fecha_nac,
-                            direccion: params.direccion,
-                            telefono_habitacion: params.telefono_habitacion,
-                            telefono_otros: params.telefono_otros,
-                            celular: params.celular,
-                            correo: params.correo,
+                            // sexo: params.sexo,
+                            // fecha_nac: params.fecha_nac,
+                            // direccion: params.direccion,
+                            // telefono_habitacion: params.telefono_habitacion,
+                            // telefono_otros: params.telefono_otros,
+                            // celular: params.celular,
+                            // correo: params.correo,
                             curso: "Diplomada en Desarrollo de Aplicacopmes en Cardano"
                         },
                     },
@@ -399,8 +428,8 @@ export const crearInscripcion = async (params: ParamsInscripcion): Promise<Resul
                      .pay.ToAddress(direccionEstudiante, { [inscripcion_dada]: BigInt(1), lovelace: BigInt(2000000)})
                      .pay.ToContract(dadaValDireccion, datum , { [inscripcion_dada]: BigInt(1), lovelace: BigInt(2000000)})
                      .attach.MintingPolicy(dadaPM_Inscripcion)
-                     .attachMetadata("721", jsonData)
-                     .complete();
+                     .attachMetadata(721, jsonData)
+                     .complete({localUPLCEval: false});
     
     
                  const signedTx = await tx.sign.withWallet().complete();
