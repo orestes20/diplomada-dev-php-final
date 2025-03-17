@@ -155,20 +155,24 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
             const titulosyNotasRedeemer = BigInt(1);
             const mintRedeemer = Data.to(titulosyNotasRedeemer);
 
-            // console.log(dadaPM_TitulosyNotas);
-            // console.log("validator address -> " + dadaValDireccion);
-            // console.log("address -> " + direccionEstudiante);
-            // console.log("Nombre Token Titulos: " + tokenName_Titulos + " -> " + titulos_tokenName);
-            // console.log("Nombre Token Notas: " + tokenName_Notas + " -> " + notas_tokenName);
-            // console.log("pid            -> " + titulosynotas_pid)
-            // console.log("NFT Titulos    -> " + titulos_dada);
-            // console.log("NFT Notas      -> " + notas_dada);
-            // console.log(fromUnit(titulos_dada));
-            // console.log(fromUnit(notas_dada));
-            // console.log("redeeemer      -> " + titulosyNotasRedeemer);
-            // console.log(mintRedeemer);
+            console.log(dadaPM_TitulosyNotas);
+            console.log("validator address -> " + dadaValDireccion);
+            console.log("address -> " + direccionEstudiante);
+            console.log("Nombre Token Titulos: " + tokenName_Titulos + " -> " + titulos_tokenName);
+            console.log("Nombre Token Notas: " + tokenName_Notas + " -> " + notas_tokenName);
+            console.log("pid            -> " + titulosynotas_pid)
+            console.log("NFT Titulos    -> " + titulos_dada);
+            console.log("NFT Notas      -> " + notas_dada);
+            console.log(fromUnit(titulos_dada));
+            console.log(fromUnit(notas_dada));
+            console.log("redeeemer      -> " + titulosyNotasRedeemer);
+            console.log(mintRedeemer);
 
+<<<<<<< HEAD
             // console.log('le di al boton');
+=======
+
+>>>>>>> 2b09e5176c35976b3bd6a74a895ea74218b5c151
             const jsonData = {
                 [titulosynotas_pid]: {
                     [tokenName_Titulos]: {
@@ -193,7 +197,7 @@ export const crearTitulos = async (): Promise<Resultado<any>> => {
                     },
                 },
             };
-            //console.log('llegue a este punto');
+            console.log('llegue a este punto');
             const datum_crudo = Data.to(BigInt(1));
             console.log("Datum crudo: -> " + datum_crudo);
             const datum: OutputDatum = {kind: "inline", value: datum_crudo};
@@ -476,15 +480,15 @@ export const crearInscripcion = async (params: ParamsInscripcion): Promise<Resul
                 const diplomadaRedeemer = BigInt(1);
                 const mintRedeemer = Data.to(diplomadaRedeemer);
     
-                console.log(dadaPM_DiplomADA);
-                console.log("validator address -> " + dadaValDireccion);
-                console.log("address -> " + direccionEstudiante);
-                console.log("Nombre Token DiplomADA: " + tokenName_DiplomADA);
-                console.log("pid            -> " + nftDiplomADA_pid)
-                console.log("NFT DiplomADA  -> " + nftDiplomADA_tokenName);
-                console.log(fromUnit(diplomada_unit));
-                console.log("redeeemer      -> " + diplomadaRedeemer);
-                console.log(mintRedeemer);
+                // console.log(dadaPM_DiplomADA);
+                // console.log("validator address -> " + dadaValDireccion);
+                // console.log("address -> " + direccionEstudiante);
+                // console.log("Nombre Token DiplomADA: " + tokenName_DiplomADA);
+                // console.log("pid            -> " + nftDiplomADA_pid)
+                // console.log("NFT DiplomADA  -> " + nftDiplomADA_tokenName);
+                // console.log(fromUnit(diplomada_unit));
+                // console.log("redeeemer      -> " + diplomadaRedeemer);
+                // console.log(mintRedeemer);
 
                  const jsonData = {
                     [nftDiplomADA_pid]: {

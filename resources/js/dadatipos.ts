@@ -19,7 +19,12 @@ export type ParamsDiplomADA = {
     nombre_curso: string;
     estatus_aprobatoria: string;
     direccion: string;
+<<<<<<< HEAD
     notas: number;
+=======
+    notas: string;
+    creditos: number;
+>>>>>>> 2b09e5176c35976b3bd6a74a895ea74218b5c151
   };
 
 export type ParamsInscripcion = {
